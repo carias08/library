@@ -10,11 +10,11 @@
 
     <h1>Cloud's Library</h1>
 
-    <button id="add-btn">New Book</button>
+    <button id="add-btn" onclick="addBookToLibrary()">New Book</button>
 
     <!-- form  -->
     <section id="add-book-form">
-        <form id="my-form" action="./js/script.js">
+        <form id="my-form" action="">
             <h2>New Book</h2>
             <div><input id="title" type="text" value="" placeholder="Title"></div>
             <div><input id="author" type="text" value="" placeholder="Author"></div>
@@ -23,9 +23,12 @@
                 <label for="read">Read</label>
                 <input id="read" type="checkbox"/>
             </div> 
-            <input type="submit" value="Add">
+            <button type="button" onclick="addBookToLibrary()">Add</button>
+            <input type="reset">
         </form>
     </section>
+
+    <!-- LIBRARY  -->
 
     <main id="library">
         <div class="container">
@@ -36,8 +39,14 @@
                 <h3>Have You read it?</h3>
             </div>
 
-            <div class="book-container">
-
+            <div id="book-container">
+                <!-- example  -->
+                <div class="book">
+                    <p>To Sleep In A Sea Of Stars</p>
+                    <p>Christopher Paolini</p>
+                    <p>880</p>
+                    <p>Yes</p>
+                </div>
             </div>
         </div>
     </main>
