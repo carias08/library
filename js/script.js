@@ -1,10 +1,3 @@
-// All of your book objects are going to be stored in a 
-// simple array, so add a function to the script 
-// (not the constructor) that can take user’s input and store 
-// the new book objects into an array. Your code should look 
-// something like this:
-
-
 // store book objects here 
 let myLibrary = [];
 
@@ -16,9 +9,21 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
+// sample books 
+
+function addSampleBooks(){
+    let sleepInSea = new Book('To Sleep In A Sea Of Stars', 'Christopher Paolini', 880, true);
+    let solutionsProblems = new Book('Solutions and Other Problems', 'Allie Brosh', 220, false);
+
+    myLibrary.push(sleepInSea, solutionsProblems);
+
+}
+
+addSampleBooks();
+
+
 // function for the add button 
 function addBookToLibrary() {
-    let bookContainer = document.getElementById('book-container');
 
     // elements values 
     let title = document.getElementById('title').value;
@@ -45,18 +50,61 @@ function addBookToLibrary() {
     displayBook()
 }
 
-// Write a function that loops through the array
-// and displays each book on the page.
-// You can display them in some sort of table,
-// or each on their own “card”. 
+
 
 //Create new Elements to hold each book card.
-function displayBook(){
-    for(let i = 0; i < myLibrary.length; i++){
-        console.log(myLibrary[i], ' displaaaay')
+let bookContainer = document.getElementById('book-container');
+
+
+// DISPLAY SAMPLE BOOKS 
+
+function displaySampleBooks(){
+
+    for (let i = 0; i < myLibrary.length; i++){
+        let bookTitles = document.createElement('p');
+        bookTitles.classList.add(`title`);
+        let bookAuthors = document.createElement('p');
+        bookAuthors.classList.add(`author`);
+        let bookPages = document.createElement('p');
+        bookPages.classList.add(`pages`);
+
+        console.log(myLibrary[i].title)
+        bookTitles.innerHTML += `<p>${myLibrary[i].title}</p>`
+        bookAuthors.innerHTML += `<p>${myLibrary[i].author}</p>`
+        bookPages.innerHTML += `<p>${myLibrary[i].pages}</p>`
+
+        bookContainer.append(bookTitles);
+        bookContainer.append(bookAuthors);
+        bookContainer.append(bookPages);
     }
 }
-// It might help for now to manually add a few books
-// to your array so you can see the display.
+
+displaySampleBooks()
+
+
+// DISPLAY USER INPUT BOOKS 
+
+function displayBook(){
+        let bookTitles = document.createElement('p');
+        bookTitles.classList.add(`title`);
+        let bookAuthors = document.createElement('p');
+        bookAuthors.classList.add(`author`);
+        let bookPages = document.createElement('p');
+        bookPages.classList.add(`pages`);
+
+        for (let i = 0; i < myLibrary.length; i++){
+            console.log(myLibrary[i].title)
+            bookTitles.innerText = myLibrary[i].title
+            bookAuthors.innerText = myLibrary[i].author
+            bookPages.innerText = myLibrary[i].pages
+        }
+
+        bookContainer.append(bookTitles);
+        bookContainer.append(bookAuthors);
+        bookContainer.append(bookPages);
+}
+
+
+
 
 
