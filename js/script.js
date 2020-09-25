@@ -54,55 +54,85 @@ function addBookToLibrary() {
 
 //Create new Elements to hold each book card.
 let bookContainer = document.getElementById('book-container');
-let bookCard = document.querySelector('.book-card');
+// let bookCard = document.querySelector('.book-card');
 
 // DISPLAY SAMPLE BOOKS 
 
 function displaySampleBooks(){
 
     for (let i = 0; i < myLibrary.length; i++){
-        let bookTitles = document.createElement('p');
-        bookTitles.classList.add(`title`);
-        let bookAuthors = document.createElement('p');
-        bookAuthors.classList.add(`author`);
-        let bookPages = document.createElement('p');
-        bookPages.classList.add(`pages`);
+        let bookCard = document.createElement('div');
+        bookCard.classList.add('book-card');
 
-        console.log(myLibrary[i].title)
-        bookTitles.innerHTML += `<p>${myLibrary[i].title}</p>`
-        bookAuthors.innerHTML += `<p>${myLibrary[i].author}</p>`
-        bookPages.innerHTML += `<p>${myLibrary[i].pages}</p>`
+        let bookTitles = document.createElement('div');
+        bookTitles.classList.add(`card`);
+        let bookAuthors = document.createElement('div');
+        bookAuthors.classList.add(`card`);
+        let bookPages = document.createElement('div');
+        bookPages.classList.add(`card`);
+        let bookHasRead = document.createElement('div');
+        bookHasRead.classList.add(`card`);
 
-        bookContainer.append(bookTitles);
-        bookContainer.append(bookAuthors);
-        bookContainer.append(bookPages);
+
+        bookTitles.innerText += myLibrary[i].title
+        bookAuthors.innerText += myLibrary[i].author
+        bookPages.innerText += myLibrary[i].pages
+        bookHasRead.innerText += 'yes';
+
+        bookCard.append(bookTitles);
+        bookCard.append(bookAuthors);
+        bookCard.append(bookPages);
+        bookCard.append(bookHasRead);
+
+        bookContainer.append(bookCard)
     }
 }
 
-// displaySampleBooks()
+displaySampleBooks()
 
 
 // DISPLAY USER INPUT BOOKS 
 
 function displayBook(){
-        let bookTitles = document.createElement('p');
-        bookTitles.classList.add(`title`);
-        let bookAuthors = document.createElement('p');
-        bookAuthors.classList.add(`author`);
-        let bookPages = document.createElement('p');
-        bookPages.classList.add(`pages`);
+    let bookCard = document.createElement('div');
+    bookCard.classList.add('book-card');
+
+    let bookTitles = document.createElement('div');
+    bookTitles.classList.add(`card`);
+    let bookAuthors = document.createElement('div');
+    bookAuthors.classList.add(`card`);
+    let bookPages = document.createElement('div');
+    bookPages.classList.add(`card`);
+    let bookHasRead = document.createElement('div');
+    bookHasRead.classList.add(`card`);
 
         for (let i = 0; i < myLibrary.length; i++){
-            console.log(myLibrary[i].title)
             bookTitles.innerText = myLibrary[i].title
             bookAuthors.innerText = myLibrary[i].author
             bookPages.innerText = myLibrary[i].pages
+            bookHasRead.innerText = 'yes';
         }
 
-        bookContainer.append(bookTitles);
-        bookContainer.append(bookAuthors);
-        bookContainer.append(bookPages);
+        bookCard.append(bookTitles);
+        bookCard.append(bookAuthors);
+        bookCard.append(bookPages);
+        bookCard.append(bookHasRead);
+
+        bookContainer.append(bookCard)
 }
+
+
+
+
+
+// **********---------------
+// **********---------------
+// **********---------------
+// **********---------------
+// -------------------------
+// -------------------------
+// -------------------------
+
 
 
 

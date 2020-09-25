@@ -20,7 +20,8 @@ th, td  {
 
 /* CARD  */
 
-.book-card, .book-card-title{
+.book-card-heading,
+.book-card {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -28,7 +29,7 @@ th, td  {
     /* border: 2px red solid; */
 }
 
-.book-card-title {
+.book-card-heading {
     font-size: 1.4rem;
 }
 
