@@ -1,3 +1,40 @@
-#book-container {
-    border: red solid 2px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table {
+    text-align: left;
+    width: 100%;
+}
+
+th {
+    font-size: 1.3rem;
+}
+
+th, td  {
+    padding-left: 2px;
+    border: solid black 1px;
+}
+
+/* CARD  */
+
+.book-card, .book-card-title{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: left;
+    /* border: 2px red solid; */
+}
+
+.book-card-title {
+    font-size: 1.4rem;
+}
+
+.card {
+    flex: 1;
+    border: 1px solid black;
+    margin: 2px;
+    padding-left: 10px;
 }

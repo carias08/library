@@ -54,7 +54,7 @@ function addBookToLibrary() {
 
 //Create new Elements to hold each book card.
 let bookContainer = document.getElementById('book-container');
-
+let bookCard = document.querySelector('.book-card');
 
 // DISPLAY SAMPLE BOOKS 
 
@@ -79,7 +79,7 @@ function displaySampleBooks(){
     }
 }
 
-displaySampleBooks()
+// displaySampleBooks()
 
 
 // DISPLAY USER INPUT BOOKS 
