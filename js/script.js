@@ -55,8 +55,6 @@ function displaySampleBooks(){
             bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn(e)'>No</button>";
         }
 
-        // bookHasRead.innerText = 'yes';
-
         tableRow.append(bookTitles);
         tableRow.append(bookAuthors);
         tableRow.append(bookPages);
@@ -76,7 +74,6 @@ function displaySampleBooks(){
             } else {
                 return readBtn[i].innerText = 'Yes'
             }
-            // readBtn[i].innerText === 'Yes' ? readBtn[i].innerText = 'No' : readBtn[i].innerText = 'Yes';
         })
     }
 }
@@ -142,6 +139,8 @@ function displayBook(){
     tBody.append(tableRow);
     myTable.append(tbody);
     bookContainer.append(myTable); 
+
+    hasReadUserBtn()
 }
 
 function hasReadUserBtn(){
@@ -161,4 +160,5 @@ function hasReadUserBtn(){
     })
 }
 
+hasReadUserBtn()
 
