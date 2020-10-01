@@ -50,9 +50,9 @@ function displaySampleBooks(){
         console.log(myLibrary[i].isRead, ' :book readdddd')
 
         if(myLibrary[i].isRead === true){
-            bookHasRead.innerHTML = '<button class="read-btn">Yes</button>';
+            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn(e)'>Yes</button>";
         } else {
-            bookHasRead.innerHTML = '<button class="read-btn">No</button>';
+            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn(e)'>No</button>";
         }
 
         // bookHasRead.innerText = 'yes';
@@ -67,16 +67,23 @@ function displaySampleBooks(){
         bookContainer.append(myTable);
     }
 
-    // hasReadBtnToggle()
+    const readBtn = document.querySelectorAll('.read-btn');
+
+    for (let i = 0; i < readBtn.length; i++) {
+        readBtn[i].addEventListener('click', function(){
+            if(readBtn[i].innerText === 'Yes'){
+                return readBtn[i].innerText = 'No'
+            } else {
+                return readBtn[i].innerText = 'Yes'
+            }
+            // readBtn[i].innerText === 'Yes' ? readBtn[i].innerText = 'No' : readBtn[i].innerText = 'Yes';
+        })
+    }
 }
 displaySampleBooks()
 
-
-
-
 // function for the add button 
 function addBookToLibrary() {
-
     // elements values 
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
@@ -86,39 +93,15 @@ function addBookToLibrary() {
     // creating new books 
     let newBook = new Book(title, author, pages, isRead);
 
-    // logging results --  DELETE LATER --
-    console.log(newBook.title);
-    console.log(newBook.author);
-    console.log(newBook.pages);
-    console.log(newBook.isRead);
-
     // pushing NEW book object to Library for storage 
     myLibrary.push(newBook);
 
-    // logging Library -- DELETE LATER --
-    console.log(myLibrary, ' :my library');
-
     // loop through library array and display books on DOM Function
     displayBook()
-
-
-
-    // consoles ------ 
-
-    console.log(myLibrary[0].isRead, ' :book read')
-
-
-
-
-
-
-
 }
 
 // DISPLAY SAMPLE BOOKS 
 
-
-
 // **********---------------
 // **********---------------
 // **********---------------
@@ -126,7 +109,6 @@ function addBookToLibrary() {
 // -------------------------
 // -------------------------
 // -------------------------
-
 
 function displayBook(){
     let tableRow = document.createElement('tr');
@@ -141,60 +123,42 @@ function displayBook(){
     let bookHasRead = document.createElement('td');
     bookHasRead.classList.add(`table-data`);
 
-        for (let i = 0; i < myLibrary.length; i++){
-            bookTitles.innerText = myLibrary[i].title
-            bookAuthors.innerText = myLibrary[i].author
-            bookPages.innerText = myLibrary[i].pages
-            if(myLibrary[i].isRead === true){
-                bookHasRead.innerHTML = '<button class="read-btn">Yes</button>';
-            } else {
-                bookHasRead.innerHTML = '<button class="read-btn">No</button>';
-            } 
-        }  
+    for (let i = 0; i < myLibrary.length; i++){
+        bookTitles.innerText = myLibrary[i].title
+        bookAuthors.innerText = myLibrary[i].author
+        bookPages.innerText = myLibrary[i].pages
+        if(myLibrary[i].isRead === true){
+            bookHasRead.innerHTML = `<button class='read-user-btn' onclick='hasReadUserBtn()'>Yes</button>`;
+        } else {
+            bookHasRead.innerHTML = `<button class='read-user-btn' onclick='hasReadUserBtn()'>No</button>`;
+        } 
+    }
 
-        tableRow.append(bookTitles);
-        tableRow.append(bookAuthors);
-        tableRow.append(bookPages);
-        tableRow.append(bookHasRead);
+    tableRow.append(bookTitles);
+    tableRow.append(bookAuthors);
+    tableRow.append(bookPages);
+    tableRow.append(bookHasRead);
 
-        tBody.append(tableRow)
-        myTable.append(tbody);
-        bookContainer.append(myTable);
+    tBody.append(tableRow);
+    myTable.append(tbody);
+    bookContainer.append(myTable); 
 }
 
+function hasReadUserBtn(){
+    const readUserBtn = document.querySelectorAll('.read-user-btn');
 
-// const readBtn = document.querySelectorAll('.read-btn');
+    console.log(readUserBtn)
 
-
-// for (let i = 0; i < myLibrary.length; i++) {
-//     readBtn[i].addEventListener('click', function(){
-//         console.log('clicked');
-//         console.log(readBtn, ' :readBtn');
-//         console.log(myLibrary[i].isRead, ' :isRead')
-//         // readBtn[i].innerText === 'Yes' ? readBtn[i].innerText = 'No' : readBtn[i].innerText = 'Yes';
-//     })
-// }
-
-// function hasReadBtn(){
-//     for (let i = 0; i < myLibrary.length; i++) {
-//         readBtn[i].addEventListener('click', function(){
-//             console.log('clicked');
-//             console.log(readBtn, ' :readBtn');
-//             readBtn[i].innerText === 'Yes' ? readBtn[i].innerText = 'No' : readBtn[i].innerText = 'Yes';
-//         })
-//     }
-// }
-
-
-const readBtn = document.querySelectorAll('.read-btn');
-
-for (let i = 0; i < readBtn.length; i++) {
-    readBtn[i].addEventListener('click', function(){
-        if(readBtn[i].innerText === 'Yes'){
-            return readBtn[i].innerText = 'No'
-        } else {
-            return readBtn[i].innerText = 'Yes'
-        }
-        // readBtn[i].innerText === 'Yes' ? readBtn[i].innerText = 'No' : readBtn[i].innerText = 'Yes';
+    readUserBtn.forEach(btn => {
+        btn.addEventListener('click', function(){
+            console.log(btn.innerText, ' : etargettt')
+            if (btn.innerText === 'Yes'){
+                return btn.innerText = 'No'
+            } else {
+                btn.innerText = 'Yes'
+            }
+        })
     })
 }
+
+
