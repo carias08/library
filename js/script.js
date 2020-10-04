@@ -4,7 +4,19 @@ let myLibrary = [];
 let bookContainer = document.getElementById('book-container');
 const myTable = document.getElementById('my-table');
 const tBody = document.getElementById('tbody');
-// const readBtn = document.querySelectorAll('.read-btn');
+
+// ----------------------MODAL
+const modalBtn = document.getElementById('add-btn');
+const myForm = document.querySelector('.show-form');
+const closeBtn = document.querySelector('.close-btn')
+
+modalBtn.addEventListener('click', function(){
+    myForm.style.display = 'block';
+})
+
+closeBtn.addEventListener('click', function(){
+    myForm.style.display = 'none';
+})
 
 // CONSTRUCTOR 
 function Book(title, author, pages, isRead) {
@@ -21,7 +33,6 @@ function addSampleBooks(){
     let sleepInSea = new Book('To Sleep In A Sea Of Stars', 'Christopher Paolini', 880, true);
     let solutionsProblems = new Book('Solutions and Other Problems', 'Allie Brosh', 220, false);
     let thursdayMurderClub = new Book('The Thursday Murder Club', 'Richard Osman', 208, true);
-
 
     myLibrary.push(sleepInSea, solutionsProblems, thursdayMurderClub);
 
@@ -95,6 +106,8 @@ function addBookToLibrary() {
 
     // loop through library array and display books on DOM Function
     displayBook()
+
+    console.log(newBook)
 }
 
 // DISPLAY SAMPLE BOOKS 
@@ -146,19 +159,29 @@ function displayBook(){
 function hasReadUserBtn(){
     const readUserBtn = document.querySelectorAll('.read-user-btn');
 
-    console.log(readUserBtn)
-
+    
     readUserBtn.forEach(btn => {
         btn.addEventListener('click', function(){
             console.log(btn.innerText, ' : etargettt')
             if (btn.innerText === 'Yes'){
                 return btn.innerText = 'No'
             } else {
-                btn.innerText = 'Yes'
+                return btn.innerText = 'Yes'
             }
         })
     })
+
 }
 
 hasReadUserBtn()
+
+
+
+
+
+
+
+// -------------------------- 
+
+
 

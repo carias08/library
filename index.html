@@ -8,12 +8,11 @@
 </head>
 <body>
 
-    <h1>Cloud's Library</h1>
 
-    <button id="add-btn">New Book</button>
 
     <!-- form  -->
-    <section id="add-book-form">
+    <section id="add-book-form" class="show-form">
+        <button class="close-btn">X</button>
         <form id="my-form" action="">
             <h2>New Book</h2>
             <div><input id="title" type="text" value="" placeholder="Title"></div>
@@ -28,17 +27,14 @@
         </form>
     </section>
 
+    <h1>Cloud's Library</h1>
+
+    <button id="add-btn">New Book</button>
+
     <!-- LIBRARY  -->
 
     <main id="library">
         <div class="container">
-            <div class="titles-container">
-                <h3>Title</h3>
-                <h3>Author</h3>
-                <h3>Pages</h3>
-                <h3>Have You read it?</h3>
-            </div>
-
             <div id="book-container">
                 <!-- SAMPLE TABLE -->
                 <table id="my-table">
