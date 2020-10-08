@@ -19,20 +19,21 @@ closeBtn.addEventListener('click', function(){
 })
 
 // CONSTRUCTOR 
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, isRead, id) {
     // the constructor...
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.id = id;
 }
 
 // SAMPLE BOOK 
 
 function addSampleBooks(){
-    let sleepInSea = new Book('To Sleep In A Sea Of Stars', 'Christopher Paolini', 880, true);
-    let solutionsProblems = new Book('Solutions and Other Problems', 'Allie Brosh', 220, false);
-    let thursdayMurderClub = new Book('The Thursday Murder Club', 'Richard Osman', 208, true);
+    let sleepInSea = new Book('To Sleep In A Sea Of Stars', 'Christopher Paolini', 880, true, 1);
+    let solutionsProblems = new Book('Solutions and Other Problems', 'Allie Brosh', 220, false, 2);
+    let thursdayMurderClub = new Book('The Thursday Murder Club', 'Richard Osman', 208, true, 3);
 
     myLibrary.push(sleepInSea, solutionsProblems, thursdayMurderClub);
 
@@ -43,6 +44,7 @@ function displaySampleBooks(){
     for (let i = 0; i < myLibrary.length; i++){
         let tableRow = document.createElement('tr');
         tableRow.classList.add('table-row');
+        tableRow.classList.add(`row-${i}`);
     
         let bookTitles = document.createElement('td');
         bookTitles.classList.add(`table-data`);
@@ -53,27 +55,39 @@ function displaySampleBooks(){
         let bookHasRead = document.createElement('td');
         bookHasRead.classList.add(`table-data`);
 
+        // remove btn 
+        let removeBtn = document.createElement('td');
+        removeBtn.classList.add('table-data');
+
 
         bookTitles.innerText = myLibrary[i].title
         bookAuthors.innerText = myLibrary[i].author
         bookPages.innerText = myLibrary[i].pages
+        myLibrary[i].id = i;
 
-        console.log(myLibrary[i].isRead, ' :book readdddd')
+        // console.log(myLibrary[i].isRead, ' :book readdddd')
 
         if(myLibrary[i].isRead === true){
-            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn(e)'>Yes</button>";
+            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn()'>Yes</button>";
         } else {
-            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn(e)'>No</button>";
+            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn()'>No</button>";
         }
+
+        removeBtn.innerHTML = `<button id=${myLibrary[i].id} class='remove-btn'>Remove</button>`
+
+
 
         tableRow.append(bookTitles);
         tableRow.append(bookAuthors);
         tableRow.append(bookPages);
         tableRow.append(bookHasRead);
+        tableRow.append(removeBtn);
 
         tBody.append(tableRow)
         myTable.append(tbody);
         bookContainer.append(myTable);
+
+        // console.log(myLibrary[i])
     }
 
     const readBtn = document.querySelectorAll('.read-btn');
@@ -106,8 +120,6 @@ function addBookToLibrary() {
 
     // loop through library array and display books on DOM Function
     displayBook()
-
-    console.log(newBook)
 }
 
 // DISPLAY SAMPLE BOOKS 
@@ -137,6 +149,7 @@ function displayBook(){
         bookTitles.innerText = myLibrary[i].title
         bookAuthors.innerText = myLibrary[i].author
         bookPages.innerText = myLibrary[i].pages
+        myLibrary[i].id = i;
         if(myLibrary[i].isRead === true){
             bookHasRead.innerHTML = `<button class='read-user-btn' onclick='hasReadUserBtn()'>Yes</button>`;
         } else {
@@ -162,7 +175,6 @@ function hasReadUserBtn(){
     
     readUserBtn.forEach(btn => {
         btn.addEventListener('click', function(){
-            console.log(btn.innerText, ' : etargettt')
             if (btn.innerText === 'Yes'){
                 return btn.innerText = 'No'
             } else {
@@ -183,5 +195,54 @@ hasReadUserBtn()
 
 // -------------------------- 
 
+// const removeBtn = document.querySelectorAll('.remove-btn');
+// console.log(removeBtn, ' :remove btn');
 
+
+// removeBtn.forEach(btn => {
+//     let index = btn.id;
+//     let book = myLibrary[index]
+//     for (let i = index; i < myLibrary.length; i++) {
+//         if(index ===  i){
+//             // myLibrary.splice(index, 1);
+//             console.log(index, ' :index')
+//             console.log(book, ' :book')
+//             console.log(myLibrary, ' :library')
+//             // bookContainer.remove();
+//         }
+//     }
+// });
+
+// DONT DELETE UP
+// DONT DELETE UP
+// DONT DELETE UP
+
+function removeBook(){
+    const removeBtn = document.querySelectorAll('.remove-btn');
+
+    myLibrary.forEach(book => {
+        removeBtn.forEach(btn => {
+            btn.addEventListener('click', function(){
+                for (let i = parseInt(book.id); i < myLibrary.length; i++) {
+                    let books = document.querySelectorAll(`.row-${i}`)
+                    // console.log(myLibrary, 'library outside if statement ')
+                    if (book.id === parseInt(btn.id)){
+                        console.log(book.id, 'book id')
+                        console.log(parseInt(btn.id), 'btn id')
+                        console.log(books, 'books[i]')
+                        myLibrary.splice(i, 1)
+                        // books.style.display = 'none';
+                        // books[i].splice(books[i], 1)
+                        console.log(myLibrary, 'library if true')
+                    } else {
+                        console.log('bollooo')
+                        console.log(myLibrary, 'library else')
+                    }
+                }
+            })
+        })
+    })
+}
+
+removeBook()
 
