@@ -1,11 +1,11 @@
-// store book objects here 
+// BOOK OBJECTS
 let myLibrary = [];
-// BOOK CONTAINER
+// DOM BOOK CONTAINER
 let bookContainer = document.getElementById('book-container');
 const myTable = document.getElementById('my-table');
 const tBody = document.getElementById('tbody');
 
-// ----------------------MODAL
+// MODAL
 const modalBtn = document.getElementById('add-btn');
 const myForm = document.querySelector('.show-form');
 const closeBtn = document.querySelector('.close-btn')
@@ -168,6 +168,7 @@ function displayBook(){
     bookContainer.append(myTable); 
 
     hasReadUserBtn()
+    removeBook()
 }
 
 function hasReadUserBtn(){
@@ -183,13 +184,11 @@ function hasReadUserBtn(){
             }
         })
     })
-
-    removeBook()
 }
 
 hasReadUserBtn()
 
-
+// REMOVE BOOK BUTTON 
 function removeBook(){
     const removeBtn = document.querySelectorAll('.remove-btn');
     let bookCard = document.querySelectorAll('.table-row');
