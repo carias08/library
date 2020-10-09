@@ -44,7 +44,6 @@ function displaySampleBooks(){
     for (let i = 0; i < myLibrary.length; i++){
         let tableRow = document.createElement('tr');
         tableRow.classList.add('table-row');
-        tableRow.classList.add(`row-${i}`);
     
         let bookTitles = document.createElement('td');
         bookTitles.classList.add(`table-data`);
@@ -65,8 +64,6 @@ function displaySampleBooks(){
         bookPages.innerText = myLibrary[i].pages
         myLibrary[i].id = i;
 
-        // console.log(myLibrary[i].isRead, ' :book readdddd')
-
         if(myLibrary[i].isRead === true){
             bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn()'>Yes</button>";
         } else {
@@ -74,8 +71,6 @@ function displaySampleBooks(){
         }
 
         removeBtn.innerHTML = `<button id=${myLibrary[i].id} class='remove-btn'>Remove</button>`
-
-
 
         tableRow.append(bookTitles);
         tableRow.append(bookAuthors);
@@ -86,8 +81,6 @@ function displaySampleBooks(){
         tBody.append(tableRow)
         myTable.append(tbody);
         bookContainer.append(myTable);
-
-        // console.log(myLibrary[i])
     }
 
     const readBtn = document.querySelectorAll('.read-btn');
@@ -101,6 +94,8 @@ function displaySampleBooks(){
             }
         })
     }
+
+    removeBook()
 }
 displaySampleBooks()
 
@@ -145,11 +140,16 @@ function displayBook(){
     let bookHasRead = document.createElement('td');
     bookHasRead.classList.add(`table-data`);
 
+    // remove btn 
+    let removeBtn = document.createElement('td');
+    removeBtn.classList.add('table-data');
+
     for (let i = 0; i < myLibrary.length; i++){
         bookTitles.innerText = myLibrary[i].title
         bookAuthors.innerText = myLibrary[i].author
         bookPages.innerText = myLibrary[i].pages
         myLibrary[i].id = i;
+        removeBtn.innerHTML = `<button id=${myLibrary[i].id} class='remove-btn'>Remove</button>`;
         if(myLibrary[i].isRead === true){
             bookHasRead.innerHTML = `<button class='read-user-btn' onclick='hasReadUserBtn()'>Yes</button>`;
         } else {
@@ -161,6 +161,7 @@ function displayBook(){
     tableRow.append(bookAuthors);
     tableRow.append(bookPages);
     tableRow.append(bookHasRead);
+    tableRow.append(removeBtn);
 
     tBody.append(tableRow);
     myTable.append(tbody);
@@ -183,66 +184,25 @@ function hasReadUserBtn(){
         })
     })
 
+    removeBook()
 }
 
 hasReadUserBtn()
 
 
-
-
-
-
-
-// -------------------------- 
-
-// const removeBtn = document.querySelectorAll('.remove-btn');
-// console.log(removeBtn, ' :remove btn');
-
-
-// removeBtn.forEach(btn => {
-//     let index = btn.id;
-//     let book = myLibrary[index]
-//     for (let i = index; i < myLibrary.length; i++) {
-//         if(index ===  i){
-//             // myLibrary.splice(index, 1);
-//             console.log(index, ' :index')
-//             console.log(book, ' :book')
-//             console.log(myLibrary, ' :library')
-//             // bookContainer.remove();
-//         }
-//     }
-// });
-
-// DONT DELETE UP
-// DONT DELETE UP
-// DONT DELETE UP
-
 function removeBook(){
     const removeBtn = document.querySelectorAll('.remove-btn');
+    let bookCard = document.querySelectorAll('.table-row');
 
-    myLibrary.forEach(book => {
-        removeBtn.forEach(btn => {
-            btn.addEventListener('click', function(){
-                for (let i = parseInt(book.id); i < myLibrary.length; i++) {
-                    let books = document.querySelectorAll(`.row-${i}`)
-                    // console.log(myLibrary, 'library outside if statement ')
-                    if (book.id === parseInt(btn.id)){
-                        console.log(book.id, 'book id')
-                        console.log(parseInt(btn.id), 'btn id')
-                        console.log(books, 'books[i]')
-                        myLibrary.splice(i, 1)
-                        // books.style.display = 'none';
-                        // books[i].splice(books[i], 1)
-                        console.log(myLibrary, 'library if true')
-                    } else {
-                        console.log('bollooo')
-                        console.log(myLibrary, 'library else')
-                    }
-                }
-            })
+    removeBtn.forEach(btn => {
+        btn.addEventListener('click', function(e){
+            let index = e.target.id
+            bookCard[index].remove()
+            console.log(myLibrary)
+            myLibrary.splice(bookCard[index], 1)
         })
     })
 }
 
-removeBook()
+
 
