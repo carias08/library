@@ -15,19 +15,26 @@
 
     <!-- form  -->
     <section id="add-book-form" class="show-form">
-        <button class="close-btn">X</button>
-        <form id="my-form" action="">
-            <h2>New Book</h2>
-            <div><input id="title" type="text" value="" placeholder="Title"></div>
-            <div><input id="author" type="text" value="" placeholder="Author"></div>
-            <div><input id="pages" type="number" value="" placeholder="Pages"></div>
-            <div>
-                <label for="read">Read</label>
-                <input id="read" type="checkbox"/>
-            </div> 
-            <button type="button" onclick="addBookToLibrary()">Add</button>
-            <input type="reset">
-        </form>
+        <div id="modal-container">
+            <button class="close-btn">X</button>
+            <div id="form-container">
+
+                <form id="my-form" action="">
+                    <h2>New Book</h2>
+                    <div><input id="title" type="text" value="" placeholder="Title"></div>
+                    <div><input id="author" type="text" value="" placeholder="Author"></div>
+                    <div><input id="pages" type="number" value="" placeholder="Pages"></div>
+                    <div>
+                        <label for="read" id="read">Read?</label>
+                        <input id="read" type="checkbox"/>
+                    </div> 
+                    <div id="btn-container">
+                        <input class="form-btns rst-btn" type="reset">
+                        <button class="form-btns add-btn" type="button" onclick="addBookToLibrary()">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 
     <!-- NAV -->
