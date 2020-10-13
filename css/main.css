@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 table {
@@ -16,6 +17,36 @@ th {
 th, td  {
     padding-left: 2px;
     border: solid black 1px;
+}
+
+
+/* NAV  */
+
+nav {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    padding: 10px 10px;
+    justify-content: space-between;
+    background-color: rgb(26, 26, 26);
+}
+
+#add-btn {
+    color: #0398AC;
+    background: none;
+    border: 1px solid #0398AC;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+#add-btn:hover {
+    background-color: #44d0e2;
+    color: white;
+    border: 1px solid #44d0e2;
+}
+
+h1 {
+    color: #0398AC;
 }
 
 /* MODAL  */
@@ -53,4 +84,26 @@ th, td  {
     border: 1px solid black;
     margin: 2px;
     padding-left: 10px;
+}
+
+/* MAIN SECTION  */
+
+main {
+    border: 2px solid red;
+    height: 620px;
+}
+
+
+/* FOOTER  */
+footer {
+    width: 100%;
+    height: 39px;
+    background-color: rgb(26, 26, 26);
+    text-align: center;
+    color: rgb(94, 94, 94);
+}
+
+footer > p {
+    font-size: 12px;
+    padding-top: 10px;
 }
