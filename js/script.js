@@ -88,11 +88,31 @@ function displaySampleBooks(){
     for (let i = 0; i < readBtn.length; i++) {
         readBtn[i].addEventListener('click', function(){
             if(readBtn[i].innerText === 'Yes'){
+                readBtn[i].style.backgroundColor = "#E05851";
                 return readBtn[i].innerText = 'No'
+                
             } else {
+                readBtn[i].style.backgroundColor = "#50B894";
                 return readBtn[i].innerText = 'Yes'
             }
         })
+    }
+
+    // style buttons
+    for (let i = 0; i < readBtn.length; i++) {
+        if(readBtn[i].innerText === 'Yes'){
+            readBtn[i].style.backgroundColor = "#50B894";
+            readBtn[i].style.border = "none";
+            readBtn[i].style.width = "50px";
+            readBtn[i].style.color = "white";
+            readBtn[i].style.borderRadius = "2px";
+        } else {
+            readBtn[i].style.backgroundColor = "#E05851";
+            readBtn[i].style.border = "none";
+            readBtn[i].style.width = "50px";
+            readBtn[i].style.color = "white";
+            readBtn[i].style.borderRadius = "2px";
+        }
     }
 
     removeBook()
