@@ -65,9 +65,9 @@ function displaySampleBooks(){
         myLibrary[i].id = i;
 
         if(myLibrary[i].isRead === true){
-            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn()'>Yes</button>";
+            bookHasRead.innerHTML = "<button class='read-btn'>Yes</button>";
         } else {
-            bookHasRead.innerHTML = "<button class='read-btn' onclick='hasReadUserBtn()'>No</button>";
+            bookHasRead.innerHTML = "<button class='read-btn'>No</button>";
         }
 
         removeBtn.innerHTML = `<button id=${myLibrary[i].id} class='remove-btn'>Remove</button>`
@@ -125,7 +125,7 @@ function addBookToLibrary() {
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
-    let isRead = document.getElementById('read').checked;
+    let isRead = document.getElementById('read-checkbox').checked;
 
     // creating new books 
     let newBook = new Book(title, author, pages, isRead);
@@ -134,18 +134,16 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 
     // loop through library array and display books on DOM Function
+    console.log(isRead, ' i am is read')
     displayBook()
 }
 
-// DISPLAY SAMPLE BOOKS 
+// Display USER INPUT books 
 
-// **********---------------
-// **********---------------
-// **********---------------
-// **********---------------
-// -------------------------
-// -------------------------
-// -------------------------
+// ...............
+// ...................
+// ............
+
 
 function displayBook(){
     let tableRow = document.createElement('tr');
@@ -160,21 +158,33 @@ function displayBook(){
     let bookHasRead = document.createElement('td');
     bookHasRead.classList.add(`table-data`);
 
+
+
     // remove btn 
     let removeBtn = document.createElement('td');
     removeBtn.classList.add('table-data');
 
+    let hasReadChecked = document.getElementById('read-checkbox').checked;
+    console.log(hasReadChecked, 'hasReadChecked')
+
+
+
+
     for (let i = 0; i < myLibrary.length; i++){
+        myLibrary[i].isRead = hasReadChecked;
         bookTitles.innerText = myLibrary[i].title
         bookAuthors.innerText = myLibrary[i].author
         bookPages.innerText = myLibrary[i].pages
+        bookHasRead.innerText = myLibrary[i].isRead;
         myLibrary[i].id = i;
         removeBtn.innerHTML = `<button id=${myLibrary[i].id} class='remove-btn'>Remove</button>`;
+
         if(myLibrary[i].isRead === true){
-            bookHasRead.innerHTML = `<button class='read-user-btn' onclick='hasReadUserBtn()'>Yes</button>`;
+            bookHasRead.innerHTML = "<button class='read-user-btn'>Yes</button>";
         } else {
-            bookHasRead.innerHTML = `<button class='read-user-btn' onclick='hasReadUserBtn()'>No</button>`;
-        } 
+            bookHasRead.innerHTML = "<button class='read-user-btn'>No</button>";
+        }
+
     }
 
     tableRow.append(bookTitles);
@@ -184,29 +194,44 @@ function displayBook(){
     tableRow.append(removeBtn);
 
     tBody.append(tableRow);
-    myTable.append(tbody);
+
+    myTable.append(tBody);
     bookContainer.append(myTable); 
 
-    hasReadUserBtn()
+    const readUserBtn = document.querySelectorAll('.read-user-btn');
+
+
+
     removeBook()
 }
 
 function hasReadUserBtn(){
     const readUserBtn = document.querySelectorAll('.read-user-btn');
 
-    
-    readUserBtn.forEach(btn => {
-        btn.addEventListener('click', function(){
-            if (btn.innerText === 'Yes'){
-                return btn.innerText = 'No'
-            } else {
-                return btn.innerText = 'Yes'
-            }
-        })
-    })
+    for (let i = 0; i < readUserBtn.length; i++){
+        console.log(readUserBtn[i], 'rUSERBTNN I I I')
+        if (readUserBtn[i] === "Yes"){
+            readUserBtn[i].style.backgroundColor = "#E05851";
+            readUserBtn[i].innerText = 'No'
+        } else if (readUserBtn[i] === "No"){
+            readUserBtn[i].style.backgroundColor = "#50B894";
+            readUserBtn[i].innerText = 'Yes'
+        }
+    }
+
+    // readUserBtn.forEach(btn => {
+    //     console.log(btn, 'i am btn btn tbn')
+    //     if (btn.innerText === 'Yes'){
+    //         btn.style.backgroundColor = "#E05851";
+    //         btn.innerText = 'No'
+    //     } else {
+    //         btn.style.backgroundColor = "#50B894";
+    //         btn.innerText = 'Yes'
+    //     }
+    // })
 }
 
-hasReadUserBtn()
+// hasReadUserBtn()
 
 // REMOVE BOOK BUTTON 
 function removeBook(){
